@@ -11,3 +11,5 @@ pink_only_file["sales"] = pink_only_file["quantity"] * pink_only_file["price"]
 final_file = pink_only_file[["sales", "date", "region"]]
 final_file.to_csv("output.csv", index=False)
 
+df_view = pd.read_csv('final_file.csv')
+print(df_view)
