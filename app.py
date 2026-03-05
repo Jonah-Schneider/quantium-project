@@ -28,7 +28,12 @@ fig = px.line(
 fig.update_layout(
     xaxis_title="Date",
     yaxis_title="Total Sales",
-    template="plotly_white"
+    template="plotly_white",
+    font=dict(family="Arial, sans-serif", size=12, color="#333"),
+    title=dict(font=dict(size=24, color="#ff69b4")),
+    plot_bgcolor="rgba(240, 240, 240, 0.5)",  # light gray background
+    paper_bgcolor="white",
+    hovermode="x unified"
 )
 
 # Create Dash app
@@ -38,7 +43,7 @@ app.layout = html.Div(
     [
         html.H1(
             "Pink Morsel Sales Dashboard",
-            style={"textAlign": "center"}
+            style={"textAlign": "center", "textAlign": "center", "color": "#120d10", "fontSize": "48px","fontFamily": "Arial, sans-serif", "marginBottom": "30px"}
         ),
 
         dcc.Graph(
