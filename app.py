@@ -28,6 +28,13 @@ fig.update_layout(
     yaxis_title="Total Sales",
     template="plotly_white"
 )
+fig.add_vline(
+    x="2021-01-15",
+    line_dash="dash",
+    line_color="red",
+    annotation_text="Price Increase",
+    annotation_position="top right"
+)
 
 # Create Dash app
 app = Dash(__name__)
@@ -45,6 +52,7 @@ app.layout = html.Div(
         ),
     ]
 )
+
 #Run app
 if __name__ == "__main__":
       #No longer uses app run server now just uses run  
