@@ -1,15 +1,22 @@
-import pandas as pd
 import os
+import pandas as pd
 
-file1 = pd.read_csv("data/daily_sales_data_0.csv")
-file2 = pd.read_csv("data/daily_sales_data_1.csv")
-file3 = pd.read_csv("data/daily_sales_data_2.csv")
-combined_file = pd.concat([file1, file2, file3])
+# Load all 3 datasets
+df1 = pd.read_csv("data/daily_sales_data_0.csv")
+df2 = pd.read_csv("data/daily_sales_data_1.csv")
+df3 = pd.read_csv("data/daily_sales_data_2.csv")
 
-pink_only_file = combined_file[combined_file["product"] == "pink morsel"]
-pink_only_file["sales"] = pink_only_file["quantity"] * pink_only_file["price"]
-final_file = pink_only_file[["sales", "date", "region"]]
-final_file.to_csv("output.csv", index=False)
+# Combine them
+df = pd.concat([df1, df2, df3])
 
-df_view = pd.read_csv('output.csv')
-print(df_view)
+# Keep only Pink Morsels
+df = df[df["product"] == "pink morsel"]
+
+# Create sales column
+df["sales"] = df["quantity"] * df["price"]
+
+# Keep only needed columns
+df = df[["sales", "date", "region"]]
+
+# Save output
+df.to_csv("output.csv", index=False)
