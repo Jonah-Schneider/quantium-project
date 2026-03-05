@@ -7,34 +7,46 @@ import pandas as pd
 
 # Load data
 df = pd.read_csv("output.csv")
-
+#Convert Sales into float
+df["sales"] = df["sales"].replace('[\$,]', '', regex=True).astype(float)
 # Convert date column to datetime
 df["date"] = pd.to_datetime(df["date"])
 
 # Sort by date
 df = df.sort_values("date")
-
+daily_sales = df.groupby("date")["sales"].sum().reset_index()
 # Create line chart
 fig = px.line(
-    df,
+    daily_sales,
     x="date",
-    y="Sales",
+    y="sales",
     title="Pink Morsel Sales Over Time"
 )
 
 fig.update_layout(
     xaxis_title="Date",
-    yaxis_title="Sales"
+    yaxis_title="Total Sales",
+    template="plotly_white"
 )
 
 # Create Dash app
 app = Dash(__name__)
 
-app.layout = html.Div([
-    html.H1("Pink Morsel Sales Visualiser"),
-    dcc.Graph(figure=fig)
-])
+app.layout = html.Div(
+    [
+        html.H1(
+            "Pink Morsel Sales Dashboard",
+            style={"textAlign": "center"}
+        ),
 
+        dcc.Graph(
+            figure=fig,
+            style={"width": "90%", "margin": "auto"}
+        ),
+    ]
+)
+#Run app
 if __name__ == "__main__":
-    app.run_server(debug=True)
+      #No longer uses app run server now just uses run  
+    app.run(debug=True)
 
