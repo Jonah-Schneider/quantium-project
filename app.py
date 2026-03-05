@@ -6,9 +6,9 @@ import pandas as pd
 #A line chart which visualises the sales data generated in the last task, sorted by date. Be sure to include appropriate axis labels for the chart.
 
 # Load data
-df = pd.read_csv("output.csv")
+df = pd.read_csv("formatted_data.csv")
 #Convert Sales into float
-df["sales"] = df["sales"].replace('[\$,]', '', regex=True).astype(float)
+df["sales"] = df["sales"].astype(float)
 # Convert date column to datetime
 df["date"] = pd.to_datetime(df["date"])
 
