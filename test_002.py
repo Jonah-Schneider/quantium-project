@@ -1,6 +1,6 @@
 #Check that the visualisation is present.
 from app import *
-def graph_tester(dash_duo):
+def test_graph(dash_duo):
   #Start app running
   dash_duo.start_server(app)
 
