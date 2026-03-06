@@ -44,7 +44,7 @@ app.layout = html.Div(
         html.H1(
             "Pink Morsel Sales Dashboard",
             style={"textAlign": "center", "textAlign": "center", "color": "#120d10", "fontSize": "48px","fontFamily": "Arial, sans-serif", "marginBottom": "30px"},
-            id = "Header"
+            id = "header"
         ),
 
         dcc.Graph(
